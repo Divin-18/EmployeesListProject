@@ -1,19 +1,37 @@
-import React,{ useState }from 'react'
+import React,{ useState ,useEffect}from 'react'
+import DisplayEmployeesInfo from '../DisplayEmployeesInfo/DisplayEmployeesInfo';
+import { useEmployeesContext } from '../../Context/EmployeeContext';
+import './EmployeesDetail.css'
 
 const EmployeesDetail = () => {
+  const {
+    submittedData,
+    addSubmittedData,
+    selectedEmployee,
+    isEditMode,
+    setIsEditMode,
+    setSubmittedData,
+  } = useEmployeesContext();
+
   const [formData, setFormData] = useState({
     firstName: '',
     middleName: '',
-    thirdName: '', 
+    thirdName: '',
     gender: '',
-    phoneNumber:'',
+    phoneNumber: '',
     contactModes: {
       email: false,
       phone: false,
     },
     maritalStatus: '',
-    immediateJoiner: '', 
+    immediateJoiner: '',
   });
+
+  useEffect(() => {
+    if (selectedEmployee) {
+      setFormData(selectedEmployee);
+    }
+  }, [selectedEmployee]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -26,29 +44,17 @@ const EmployeesDetail = () => {
           [name]: checked,
         },
       });
-    } else if (name === 'maritalStatus') {
+    } else if (name === 'maritalStatus' || type === 'radio') {
       setFormData({
         ...formData,
-        maritalStatus: value,
+        [name]: value,
       });
-    } else if (type === 'radio' && name === 'immediateJoiner') {
-      setFormData({
-        ...formData,
-        immediateJoiner: value,
-      });
-    }else {
+    } else {
       setFormData({
         ...formData,
         [name]: value,
       });
     }
-  };
-
-  const handleMaritalStatusChange = (e) => {
-    setFormData({
-      ...formData,
-      maritalStatus: e.target.value,
-    });
   };
 
   const handleClear = () => {
@@ -67,11 +73,27 @@ const EmployeesDetail = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    if (isEditMode) {
+      const updatedData = submittedData.map((employee) =>
+        employee === selectedEmployee ? formData : employee
+      );
+      setSubmittedData(updatedData);
+      handleClear();
+      setIsEditMode(false);
+    } else {
+      addSubmittedData(formData);
+      handleClear();
+    }
+  };
+
 
   return (
     <div>
       <h2>Employees Form</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
       <div>
           <label>First Name:</label>
           <input
@@ -164,7 +186,7 @@ const EmployeesDetail = () => {
         </div>
         <div>
           <label>Marital Status:</label>
-          <select name="maritalStatus" value={formData.maritalStatus} onChange={handleMaritalStatusChange}>
+          <select name="maritalStatus" value={formData.maritalStatus} onChange={handleInputChange}>
             <option value="">Select</option>
             <option value="married">Married</option>
             <option value="single">Single</option>
@@ -196,9 +218,10 @@ const EmployeesDetail = () => {
           </label>
         </div>
         <div>
-          <button type="submit">Submit</button>
+        <button type="submit">{isEditMode ? 'Update' : 'Submit'}</button>
           <button type="button" onClick={handleClear}>Clear</button>
         </div>
+        <DisplayEmployeesInfo  />
       </form>
     </div>
   )

@@ -1,11 +1,12 @@
 import './App.css';
 import EmployeesDetail from './Components/EmployeesDetailForm/EmployeesDetail';
+import { EmployeesProvider } from './Context/EmployeeContext';
 
 function App() {
   return (
-    <div className="App">
+    <EmployeesProvider>
      <EmployeesDetail/>
-    </div>
+    </EmployeesProvider>
   );
 }
 
