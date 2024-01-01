@@ -51,6 +51,22 @@ const EmployeesDetail = () => {
     });
   };
 
+  const handleClear = () => {
+    setFormData({
+      firstName: '',
+      middleName: '',
+      thirdName: '',
+      gender: '',
+      phoneNumber: '',
+      contactModes: {
+        email: false,
+        phone: false,
+      },
+      maritalStatus: '',
+      immediateJoiner: '',
+    });
+  };
+
 
   return (
     <div>
@@ -181,7 +197,7 @@ const EmployeesDetail = () => {
         </div>
         <div>
           <button type="submit">Submit</button>
-          <button type="button">Clear</button>
+          <button type="button" onClick={handleClear}>Clear</button>
         </div>
       </form>
     </div>
