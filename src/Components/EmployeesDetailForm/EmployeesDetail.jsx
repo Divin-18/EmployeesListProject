@@ -15,7 +15,7 @@ const EmployeesDetail = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     middleName: '',
-    lastName: '',
+    thirdName: '',
     gender: '',
     phoneNumber: '',
     contactModes: {
@@ -60,7 +60,7 @@ const EmployeesDetail = () => {
     setFormData({
       firstName: '',
       middleName: '',
-      lastName: '',
+      thirdName: '',
       gender: '',
       phoneNumber: '',
       contactModes: {
@@ -115,8 +115,8 @@ const EmployeesDetail = () => {
           <label >Last Name:</label>
           <input
             type="text"
-            name="lastName"
-            value={formData.lastName}
+            name="thirdName"
+            value={formData.thirdName}
             onChange={handleInputChange}
           />
         </div>
