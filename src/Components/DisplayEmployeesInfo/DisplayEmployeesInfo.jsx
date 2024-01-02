@@ -25,7 +25,7 @@ const DisplayEmployeesInfo = () => {
               <tr>
                 <th>First Name</th>
                 <th>Middle Name</th>
-                <th>Third Name</th>
+                <th>Last Name</th>
                 <th>Gender</th>
                 <th>Phone Number</th>
                 <th>Email Contact</th>
@@ -39,7 +39,7 @@ const DisplayEmployeesInfo = () => {
                 <tr key={index}>
                   <td>{data.firstName}</td>
                   <td>{data.middleName}</td>
-                  <td>{data.thirdName}</td>
+                  <td>{data.lastName}</td>
                   <td>{data.gender}</td>
                   <td>{data.phoneNumber}</td>
                   <td>{data.contactModes.email ? 'Yes' : 'No'}</td>
