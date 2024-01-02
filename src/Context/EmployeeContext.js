@@ -30,14 +30,6 @@ export const EmployeesProvider = ({ children }) => {
     setSelectedEmployee(submittedData[index]);
   };
 
-  const updateEmployee = (updatedData) => {
-    const updatedList = submittedData.map((data, index) =>
-      index === selectedEmployee.index ? updatedData : data
-    );
-    setSubmittedData(updatedList);
-    setSelectedEmployee(null);
-    setIsEditMode(false);
-  };
 
   return (
     <EmployeesContext.Provider
@@ -47,7 +39,6 @@ export const EmployeesProvider = ({ children }) => {
         deleteSubmittedData,
         editEmployee,
         selectedEmployee,
-        updateEmployee,
         isEditMode,
         setIsEditMode,
         setSubmittedData
