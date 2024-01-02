@@ -1,5 +1,4 @@
 import React,{ useState ,useEffect}from 'react'
-import DisplayEmployeesInfo from '../DisplayEmployeesInfo/DisplayEmployeesInfo';
 import { useEmployeesContext } from '../../Context/EmployeeContext';
 import './EmployeesDetail.css'
 
@@ -221,7 +220,6 @@ const EmployeesDetail = () => {
         <button type="submit">{isEditMode ? 'Update' : 'Submit'}</button>
           <button type="button" onClick={handleClear}>Clear</button>
         </div>
-        <DisplayEmployeesInfo  />
       </form>
     </div>
   )
