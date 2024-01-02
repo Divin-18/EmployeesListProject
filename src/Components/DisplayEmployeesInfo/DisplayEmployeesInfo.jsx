@@ -5,12 +5,15 @@ import { useEmployeesContext } from '../../Context/EmployeeContext';
 import './DisplayEmployeesInfo.css'
 
 const DisplayEmployeesInfo = () => {
-  const { submittedData, removeSubmittedData,editEmployee } = useEmployeesContext();
+  const { submittedData, deleteSubmittedData,editEmployee } = useEmployeesContext();
 
   const handleDelete = (index) => {
-    removeSubmittedData(index);
+    deleteSubmittedData(index);
   };
-
+  
+  const handleEdit = (index) => {
+    editEmployee(index)
+  };
 
   return (
     <div>
@@ -46,8 +49,10 @@ const DisplayEmployeesInfo = () => {
                   <td>
                   <FontAwesomeIcon
                       icon={faEdit}
-                      onClick={() => editEmployee(index)}
+                      onClick={() => handleEdit(index)}
                     />
+                    </td>
+                    <td>
                     <FontAwesomeIcon
                       icon={faTrash}
                       onClick={() => handleDelete(index)}

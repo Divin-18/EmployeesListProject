@@ -15,13 +15,11 @@ th {
   background-color: #f2f2f2;
 }
 
-/* Icons */
 svg {
   cursor: pointer;
   margin-right: 5px;
 }
 
-/* Additional Styles */
 h3 {
   font-size: 20px;
   margin-bottom: 10px;

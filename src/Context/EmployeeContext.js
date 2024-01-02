@@ -15,8 +15,13 @@ export const EmployeesProvider = ({ children }) => {
     setSubmittedData([...submittedData, data]);
   };
 
-  const removeSubmittedData = (index) => {
-    const newData = submittedData.filter((_, i) => i !== index);
+  const deleteSubmittedData = (index) => {
+    const newData = [];
+    for (let i = 0; i < submittedData.length; i++) {
+      if (i !== index) {
+        newData.push(submittedData[i]);
+      }
+    }
     setSubmittedData(newData);
   };
 
@@ -39,7 +44,7 @@ export const EmployeesProvider = ({ children }) => {
       value={{
         submittedData,
         addSubmittedData,
-        removeSubmittedData,
+        deleteSubmittedData,
         editEmployee,
         selectedEmployee,
         updateEmployee,
